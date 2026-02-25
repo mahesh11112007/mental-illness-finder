@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MENTAL ILLNESS FINDER</title>
+<title>Mental Illness Finder</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
-  <h1>MENTAL ILLNESS FINDER</h1>
-  <p class="sub">Self Mental Health Check</p>
-  <div id="card"></div>
+<div class="chat-container">
+  <div id="chat"></div>
+
+  <div class="options">
+    <button onclick="answer(1)">Never</button>
+    <button onclick="answer(2)">Sometimes</button>
+    <button onclick="answer(3)">Often</button>
+    <button onclick="answer(4)">Almost Always</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
