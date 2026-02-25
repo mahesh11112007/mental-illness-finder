@@ -1,0 +1,79 @@
+const questions = {
+
+q1:{q:"Do you feel mentally exhausted most days?",
+A:{t:"Yes",n:"q2"}, B:{t:"No",n:"q3"}},
+
+q2:{q:"Do you have trouble sleeping?",
+A:{t:"Yes",n:"q4"}, B:{t:"No",n:"q5"}},
+
+q3:{q:"Do you feel motivated at work?",
+A:{t:"Yes",n:"q6"}, B:{t:"No",n:"q4"}},
+
+q4:{q:"Do you feel hopeless or sad often?",
+A:{t:"Yes",n:"q7"}, B:{t:"No",n:"q8"}},
+
+q5:{q:"Do you feel irritated or angry easily?",
+A:{t:"Yes",n:"q7"}, B:{t:"No",n:"q6"}},
+
+q6:{q:"Do you struggle to concentrate?",
+A:{t:"Yes",n:"q8"}, B:{t:"No",n:"q9"}},
+
+q7:{q:"Do you feel life is meaningless?",
+A:{t:"Yes",n:"DEP"}, B:{t:"No",n:"q10"}},
+
+q8:{q:"Do you feel nervous or panicky?",
+A:{t:"Yes",n:"ANX"}, B:{t:"No",n:"q9"}},
+
+q9:{q:"Do you feel physically tired even after rest?",
+A:{t:"Yes",n:"BUR"}, B:{t:"No",n:"q10"}},
+
+q10:{q:"Do you enjoy your daily activities?",
+A:{t:"Yes",n:"OK"}, B:{t:"No",n:"q11"}},
+
+q11:{q:"Do you avoid social interaction?",
+A:{t:"Yes",n:"DEP"}, B:{t:"No",n:"q12"}},
+
+q12:{q:"Do you worry excessively?",
+A:{t:"Yes",n:"ANX"}, B:{t:"No",n:"STR"}}
+
+};
+
+function show(id){
+
+ if(id==="DEP") return result("Depression Risk");
+ if(id==="ANX") return result("Anxiety Risk");
+ if(id==="BUR") return result("Burnout Risk");
+ if(id==="STR") return result("Mild Stress");
+ if(id==="OK")  return result("Normal Mental Health");
+
+ let q = questions[id];
+
+ document.getElementById("card").innerHTML = `
+   <h2>${q.q}</h2>
+   <button onclick="show('${q.A.n}')">${q.A.t}</button>
+   <button onclick="show('${q.B.n}')">${q.B.t}</button>
+ `;
+}
+
+function result(text){
+ let msg="";
+
+ if(text==="Depression Risk")
+   msg="Talk to counselor, daily walk, fixed sleep routine.";
+ else if(text==="Anxiety Risk")
+   msg="Breathing exercises, meditation, reduce caffeine.";
+ else if(text==="Burnout Risk")
+   msg="Take breaks, reduce workload, proper rest.";
+ else if(text==="Mild Stress")
+   msg="Time management, yoga, light exercise.";
+ else
+   msg="Maintain healthy habits and balanced lifestyle.";
+
+ document.getElementById("card").innerHTML = `
+   <h2>${text}</h2>
+   <p>${msg}</p>
+   <button onclick="show('q1')">Restart Test</button>
+ `;
+}
+
+show("q1");
