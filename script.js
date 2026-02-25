@@ -12,7 +12,7 @@ A:{t:"Yes",n:"q6"}, B:{t:"No",n:"q4"}},
 q4:{q:"Do you feel hopeless or sad often?",
 A:{t:"Yes",n:"q7"}, B:{t:"No",n:"q8"}},
 
-q5:{q:"Do you feel irritated or angry easily?",
+q5:{q:"Do you feel irritated easily?",
 A:{t:"Yes",n:"q7"}, B:{t:"No",n:"q6"}},
 
 q6:{q:"Do you struggle to concentrate?",
@@ -24,10 +24,10 @@ A:{t:"Yes",n:"DEP"}, B:{t:"No",n:"q10"}},
 q8:{q:"Do you feel nervous or panicky?",
 A:{t:"Yes",n:"ANX"}, B:{t:"No",n:"q9"}},
 
-q9:{q:"Do you feel physically tired even after rest?",
+q9:{q:"Do you feel tired even after rest?",
 A:{t:"Yes",n:"BUR"}, B:{t:"No",n:"q10"}},
 
-q10:{q:"Do you enjoy your daily activities?",
+q10:{q:"Do you enjoy daily activities?",
 A:{t:"Yes",n:"OK"}, B:{t:"No",n:"q11"}},
 
 q11:{q:"Do you avoid social interaction?",
@@ -35,8 +35,9 @@ A:{t:"Yes",n:"DEP"}, B:{t:"No",n:"q12"}},
 
 q12:{q:"Do you worry excessively?",
 A:{t:"Yes",n:"ANX"}, B:{t:"No",n:"STR"}}
-
 };
+
+let asked = new Set();   // <-- prevents repeats
 
 function show(id){
 
@@ -45,6 +46,12 @@ function show(id){
  if(id==="BUR") return result("Burnout Risk");
  if(id==="STR") return result("Mild Stress");
  if(id==="OK")  return result("Normal Mental Health");
+
+ if(asked.has(id)){
+   return result("Assessment Completed");
+ }
+
+ asked.add(id);
 
  let q = questions[id];
 
@@ -56,24 +63,31 @@ function show(id){
 }
 
 function result(text){
- let msg="";
 
+ let msg="";
  if(text==="Depression Risk")
-   msg="Talk to counselor, daily walk, fixed sleep routine.";
+   msg="Talk to counselor, exercise, fixed sleep routine.";
  else if(text==="Anxiety Risk")
    msg="Breathing exercises, meditation, reduce caffeine.";
  else if(text==="Burnout Risk")
-   msg="Take breaks, reduce workload, proper rest.";
+   msg="Take breaks, reduce workload, rest well.";
  else if(text==="Mild Stress")
-   msg="Time management, yoga, light exercise.";
+   msg="Yoga, time management, relaxation.";
+ else if(text==="Normal Mental Health")
+   msg="You seem mentally healthy.";
  else
-   msg="Maintain healthy habits and balanced lifestyle.";
+   msg="Thank you for completing the assessment.";
 
  document.getElementById("card").innerHTML = `
    <h2>${text}</h2>
    <p>${msg}</p>
-   <button onclick="show('q1')">Restart Test</button>
+   <button onclick="restart()">Restart</button>
  `;
+}
+
+function restart(){
+ asked.clear();
+ show("q1");
 }
 
 show("q1");
