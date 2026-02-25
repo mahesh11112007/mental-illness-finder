@@ -8,15 +8,33 @@
 
 <body>
 
-<div class="chat-container">
-  <div id="chat"></div>
+<header>
+  <h2>Mental Illness Finder</h2>
+  <button onclick="toggleSettings()">⚙</button>
+</header>
 
-  <div class="options">
-    <button onclick="answer(1)">Never</button>
-    <button onclick="answer(2)">Sometimes</button>
-    <button onclick="answer(3)">Often</button>
-    <button onclick="answer(4)">Almost Always</button>
-  </div>
+<div class="container">
+
+<div class="progress">
+  <div id="bar"></div>
+</div>
+
+<form id="quiz">
+  <div id="questions"></div>
+  <button type="submit" class="submit">Analyze</button>
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<div id="settings" class="settings">
+  <h3>Settings</h3>
+  <p>Dark Mode – Coming Soon</p>
+  <p>Download PDF Report – Coming Soon</p>
+  <p>AI Counselor – Coming Soon</p>
+  <p>Weekly Tracking – Coming Soon</p>
+  <button onclick="toggleSettings()">Close</button>
 </div>
 
 <script src="script.js"></script>
