@@ -1,77 +1,237 @@
-body{
+/* RESET */
+
+*{
   margin:0;
-  font-family:Arial;
-  background:#f4f6fb;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, sans-serif;
 }
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#1e3c72,#2a5298);
+  display:flex;
+  flex-direction:column;
+  color:white;
+}
+
+/* HEADER */
 
 header{
   display:flex;
   justify-content:space-between;
-  padding:15px;
-  background:#2c3e50;
-  color:white;
+  align-items:center;
+  padding:18px 30px;
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:0.5px;
 }
 
+header button{
+  background:rgba(255,255,255,0.15);
+  border:none;
+  padding:8px 14px;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+header button:hover{
+  background:rgba(255,255,255,0.3);
+  transform:scale(1.05);
+}
+
+/* MAIN CONTAINER */
+
 .container{
-  max-width:700px;
-  margin:auto;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
   padding:20px;
 }
 
+/* PROGRESS BAR */
+
 .progress{
   width:100%;
-  height:8px;
-  background:#ddd;
+  max-width:800px;
+  height:10px;
+  background:rgba(255,255,255,0.2);
   border-radius:10px;
-  margin-bottom:20px;
+  overflow:hidden;
+  margin-bottom:25px;
 }
 
 #bar{
-  height:8px;
+  height:10px;
   width:0%;
-  background:#3498db;
+  background:linear-gradient(to right,#00f260,#0575e6);
   border-radius:10px;
+  transition:width 0.5s ease;
 }
 
-.question{
-  background:white;
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:8px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+/* FORM */
+
+form{
+  width:100%;
+  max-width:800px;
 }
+
+/* QUESTION CARD */
+
+.question{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:16px;
+  transition:all 0.3s ease;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.question:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.35);
+}
+
+/* DROPDOWN */
 
 select{
   width:100%;
-  padding:8px;
-  margin-top:8px;
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:15px;
+  background:white;
+  color:#333;
+  transition:0.3s;
 }
+
+select:focus{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(0,114,255,0.4);
+}
+
+/* SUBMIT BUTTON */
 
 .submit{
   width:100%;
-  padding:12px;
-  background:#3498db;
-  color:white;
+  padding:14px;
   border:none;
-  border-radius:6px;
-  margin-top:15px;
+  border-radius:12px;
+  background:linear-gradient(to right,#00c6ff,#0072ff);
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s ease;
 }
 
-#result{
-  margin-top:20px;
-  font-size:18px;
-  text-align:center;
+.submit:hover{
+  transform:scale(1.03);
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
+
+/* RESULT SECTION */
+
+#result{
+  margin-top:30px;
+  text-align:center;
+  font-size:22px;
+  font-weight:600;
+  letter-spacing:0.5px;
+}
+
+/* SETTINGS MODAL */
 
 .settings{
   display:none;
   position:fixed;
-  top:20%;
+  top:50%;
   left:50%;
-  transform:translateX(-50%);
-  width:300px;
+  transform:translate(-50%,-50%);
+  width:90%;
+  max-width:420px;
   background:white;
-  padding:20px;
+  color:#333;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.5);
+  animation:fadeIn 0.3s ease;
+}
+
+.settings h3{
+  margin-bottom:15px;
+}
+
+.settings p{
+  margin-bottom:12px;
+  font-size:14px;
+  color:#555;
+}
+
+.settings button{
+  width:100%;
+  padding:10px;
+  margin-top:15px;
+  border:none;
   border-radius:10px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+  background:#0072ff;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.settings button:hover{
+  background:#005ad1;
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translate(-50%,-60%);
+  }
+  to{
+    opacity:1;
+    transform:translate(-50%,-50%);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  header{
+    font-size:18px;
+    padding:15px 20px;
+  }
+
+  .question{
+    padding:15px;
+  }
+
+  .submit{
+    padding:12px;
+  }
+
+  #result{
+    font-size:18px;
+  }
+}
+
+@media(min-width:1200px){
+
+  .container{
+    padding:40px;
+  }
+
+  .question{
+    padding:25px;
+  }
 }
