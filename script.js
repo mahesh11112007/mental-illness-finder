@@ -56,7 +56,7 @@ document.getElementById("quiz").onsubmit = function(e){
 
   document.getElementById("result").innerHTML =
   `<b>Assessment Result:</b> ${result}
-   <br><small>This is a prototype screening tool.</small>`;
+   <br><small>Find the code on <a href="https://github.com/mahesh11112007/mental-illness-finder">github</a></small>`;
 }
 
 function toggleSettings(){
